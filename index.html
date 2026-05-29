@@ -16,6 +16,35 @@
     padding: 0;
     overflow-x: hidden; /* This prevents the horizontal scroll bar */
 }
+/* 1. Ensure the viewport is fully contained */
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* This prevents the horizontal scroll bar */
+}
+
+/* 2. Target specific elements that likely cause the overflow on mobile */
+@media (max-width: 640px) {
+    /* Ensure all main section containers don't have excessive padding */
+    .hero, 
+    .news-ticker-container, 
+    .news-section, 
+    .services-section, 
+    .fact-check-section {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        width: 100vw !important; /* Ensure they don't exceed screen width */
+        box-sizing: border-box !important;
+    }
+
+    /* Force the navbar to fit */
+    .navbar {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        width: 100vw !important;
+    }
+}
         :root {
             --bg-color: #030f26; /* كحلي داكن جداً مطابق للصورة */
             --bg-grid: #051636;
@@ -1700,11 +1729,11 @@
                         <i class="fa-regular fa-newspaper"></i>
                         <span>آخر الأخبار</span>
                     </a>
-                    <a href="/services.html" class="btn-glass-action">
+                    <a href="services.html" class="btn-glass-action">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <span>تتبع طلبك</span>
                     </a>
-                    <a href="/services.html" class="btn-services-hub">
+                    <a href="services.html" class="btn-services-hub">
                         <i class="fa-solid fa-arrow-left"></i>
                         <span>بوابة الخدمات</span>
                         <i class="fa-solid fa-border-all"></i>
