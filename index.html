@@ -1,0 +1,2181 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وزارة الإعلام - دولة توبيا</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #030f26; /* كحلي داكن جداً مطابق للصورة */
+            --bg-grid: #051636;
+            --accent-gold: #f5b932; /* اللون الأصفر/الذهبي المميز في التصميم */
+            --accent-blue: #0066ff;
+            --text-white: #ffffff;
+            --text-muted: #748ba7;
+            --card-bg: rgba(6, 26, 61, 0.6);
+            --card-border: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            overflow-x: hidden;
+            min-height: 100vh;
+            /* تأثير الخلفية الشبكية الدقيقة المماثلة للصورة */
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* توهج جانبي ديناميكي خلف الهيرو */
+        .ambient-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.08) 0%, rgba(0,0,0,0) 70%);
+            top: 20%;
+            left: -100px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* 🏛️ شريط التنقل الذكي (Navbar) */
+        .navbar {
+            height: 90px;
+            display: flex;
+            align-items: center;
+            padding: 0 50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .nav-container {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* يمين الهيدر: الأزرار المساعدة وحساب جديد */
+        .nav-right-side {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn-register {
+            background-color: var(--accent-gold);
+            color: #030f26;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-icons-group {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            color: var(--text-white);
+            font-size: 0.95rem;
+        }
+
+        .nav-icons-group i, .nav-icons-group span {
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .nav-icons-group i:hover, .nav-icons-group span:hover {
+            opacity: 1;
+        }
+
+        .login-link {
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* منتصف الهيدر: القائمة الرئيسية */
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0.7;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            opacity: 1;
+        }
+
+        /* يسار الهيدر: الشعار المؤسسي المحدث */
+        .nav-left-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-titles {
+            text-align: left; /* للحفاظ على الهوية الإنجليزية الفرعية متناسقة */
+        }
+
+        .brand-titles h1 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .brand-titles p {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .logo-cube {
+            width: 42px;
+            height: 42px;
+            background-color: var(--accent-gold);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #030f26;
+            font-size: 1.2rem;
+        }
+
+        /* 🎬 قسم الهيرو الرئيسي الفاخر */
+        .hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 50px;
+            display: grid;
+            /* 0.9fr لكتلة الكروت الذكية يميناً، و 1.1fr لكتلة النصوص يساراً */
+            grid-template-columns: 0.9fr 1.1fr; 
+            gap: 60px;
+            position: relative;
+            z-index: 5;
+            min-height: calc(100vh - 90px);
+            align-items: center;
+        }
+
+        /* كتلة النصوص والأزرار الاستراتيجية (الجهة اليسرى) */
+        .hero-text-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: right;
+            order: 2; /* يضمن بقاء النص على اليسار بصرياً وهندسياً */
+        }
+
+        .badge-official {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(6, 26, 61, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-weight: 600;
+            align-self: flex-start;
+        }
+
+        .badge-official i {
+            color: var(--accent-gold);
+        }
+
+        .main-headline {
+            font-size: 4.2rem;
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .main-headline .gold-text {
+            color: var(--accent-gold);
+        }
+
+        .sub-paragraph {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            max-width: 580px;
+            margin-bottom: 35px;
+        }
+
+        /* مجموعة الأزرار والروابط السريعة */
+        .action-group-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .primary-actions-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-services-hub {
+            background-color: var(--accent-gold);
+            color: #030f26;
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-glass-action {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            color: var(--text-white);
+            padding: 14px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-glass-action:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .secondary-actions-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-outline-action {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-white);
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline-action:hover {
+            border-color: var(--text-white);
+        }
+
+        /* كتلة الكروت التفاعلية العائمة (الجهة اليمنى) */
+        .hero-cards-visual {
+            position: relative;
+            width: 100%;
+            height: 480px;
+            order: 1; /* يضمن بقاء الكروت على اليمين بصرياً وهندسياً */
+        }
+
+        /* 1. كارت البث المباشر (الأعلى يميناً) */
+        .card-live-stream {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            width: 320px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 16px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 3;
+        }
+
+        .live-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .live-indicator {
+            color: #ef4444;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .live-indicator::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background-color: #ef4444;
+            border-radius: 50%;
+        }
+
+        .live-channel-name {
+            color: var(--text-muted);
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 140px;
+            background: rgba(3, 15, 38, 0.8);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-gold);
+            font-size: 1.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            margin-bottom: 12px;
+        }
+
+        .live-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        /* 2. كارت مساعد الذكاء الاصطناعي AI (المنتصف يساراً داخل كتلة اليمين) */
+        .card-ai-assistant {
+            position: absolute;
+            top: 150px;
+            left: -10px;
+            width: 250px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 16px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 4;
+        }
+
+        .ai-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .ai-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ai-icon-badge {
+            width: 24px;
+            height: 24px;
+            background: var(--accent-gold);
+            color: #030f26;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+
+        .ai-status {
+            font-size: 0.7rem;
+            color: #10b981;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .ai-status::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background-color: #10b981;
+            border-radius: 50%;
+        }
+
+        .ai-body {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            text-align: right;
+        }
+
+        /* 3. كارت المؤشر الإعلامي والرسوم البيانية (الأسفل يميناً) */
+        .card-analytics-graph {
+            position: absolute;
+            bottom: 10px;
+            right: 40px;
+            width: 320px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 18px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 3;
+        }
+
+        .graph-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 15px;
+        }
+
+        .graph-percentage {
+            font-size: 0.7rem;
+            color: #10b981;
+            font-weight: 700;
+        }
+
+        .graph-value-block {
+            text-align: right;
+        }
+
+        .graph-title {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .graph-main-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .graph-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            height: 60px;
+            padding-top: 10px;
+        }
+
+        .bar {
+            flex: 1;
+            background-color: var(--accent-gold);
+            border-radius: 3px;
+            opacity: 0.8;
+        }
+
+        .bar-1 { height: 75%; }
+        .bar-2 { height: 45%; }
+        .bar-3 { height: 60%; }
+        .bar-4 { height: 50%; }
+        .bar-5 { height: 85%; }
+        .bar-6 { height: 35%; }
+        .bar-7 { height: 55%; }
+        .bar-8 { height: 40%; }
+
+        /* 📊 الشريط السفلي للإحصائيات الفيدرالية الموحدة */
+        .footer-stats-strip {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px 60px 50px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .horizontal-stat-card {
+            background: rgba(6, 26, 61, 0.4);
+            border: 1px solid var(--card-border);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .h-stat-number {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+        }
+
+        .h-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* متجاوب مع الشاشات المتنوعة */
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; padding-top: 20px; }
+            .hero-cards-visual { display: none; } /* إخفاء الكروت العائمة في الموبايل لراحة العين */
+            .footer-stats-strip { grid-template-columns: repeat(2, 1fr); }
+            .nav-menu { display: none; }
+        }
+
+        @media (max-width: 640px) {
+            .main-headline { font-size: 2.5rem; }
+            .footer-stats-strip { grid-template-columns: 1fr; }
+            .primary-actions-row, .secondary-actions-row { flex-direction: column; }
+            .navbar { padding: 0 20px; }
+            .hero { padding: 20px; }
+        }
+
+        /* 📰 شريط الأخبار العاجلة المتحرك */
+        .news-ticker-container {
+            max-width: 1400px;
+            margin: -10px auto 40px auto;
+            padding: 0 50px;
+            position: relative;
+            z-index: 6;
+        }
+
+        .ticker-wrapper {
+            display: flex;
+            align-items: center;
+            background: rgba(6, 26, 61, 0.5);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            height: 46px;
+        }
+
+        /* عنوان الشريط الثابت */
+        .ticker-title {
+            background-color: #ef4444; /* اللون الأحمر العاجل */
+            color: var(--text-white);
+            padding: 0 20px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            gap: 8px;
+            box-shadow: 4px 0 15px rgba(239, 68, 68, 0.3);
+            z-index: 2;
+        }
+
+        /* منطقة النص المتحرك */
+        .ticker-content-flow {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .ticker-text-inner {
+            display: flex;
+            white-space: nowrap;
+            gap: 50px;
+            padding-right: 20px;
+            animation: ticker-slide 25s linear infinite;
+        }
+
+        /* عنصر الخبر الفردي */
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-white);
+        }
+
+        /* النقطة الفاصلة بين الأخبار */
+        .ticker-bullet {
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-gold);
+            border-radius: 50%;
+        }
+
+        /* حركة الشريط من اليمين إلى اليسار المتوافقة مع اتجاه RTL */
+        @keyframes ticker-slide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* إيقاف الحركة المؤقت عند مرور الماوس لراحة القراءة */
+        .ticker-content-flow:hover .ticker-text-inner {
+            animation-play-state: paused;
+        }
+
+        /* التوافق مع الشاشات الصغيرة */
+        @media (max-width: 640px) {
+            .news-ticker-container {
+                padding: 0 20px;
+                margin-top: 10px;
+            }
+            .ticker-title span { display: none; } /* إخفاء كلمة عاجل النصية والاكتفاء بالأيقونة في الموبايل */
+        }
+
+        /* 📰 قسم آخر المستجدات الرسمية (News Section) */
+        .news-section {
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 50px;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* الهيدر العلوي للقسم */
+        .news-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+      /* الهيدر العلوي للقسم - تم تحديثه لتوزيع العناصر بالكامل */
+.news-section-header {
+    display: flex;
+    justify-content: space-between; /* يوزع العناصر على الأطراف */
+    align-items: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.news-main-title {
+    text-align: right; /* محاذاة النص جهة اليمين */
+}
+
+.news-main-title p {
+    font-size: 0.75rem;
+    color: var(--accent-gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.news-main-title h3 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-white);
+}
+
+.btn-view-all-news {
+    color: var(--accent-gold);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity 0.2s;
+}
+
+.btn-view-all-news:hover {
+    opacity: 0.8;
+}
+
+        /* شريط تبويب الفئات الدائري (Categories Grid) */
+        .news-categories-tabs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .category-tab-card {
+            background: rgba(6, 26, 61, 0.4);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .category-tab-card i {
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            margin-bottom: 12px;
+        }
+
+        .category-tab-card .cat-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 2px;
+        }
+
+        .category-tab-card .cat-count {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        /* التبويب النشط الافتراضي */
+        .category-tab-card.active {
+            background: rgba(6, 26, 61, 0.8);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.02);
+        }
+
+        /* شبكة عرض المحتوى (بنتو للأخبار) */
+        .news-articles-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 0.8fr;
+            gap: 25px;
+        }
+
+        /* الكارت الرئيسي (البث والمؤتمر الكبير على اليمين بصرياً) */
+        .main-featured-news-card {
+            background: rgba(6, 26, 61, 0.4);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+            min-height: 480px;
+            overflow: hidden;
+            background-image: linear-gradient(to top, #030f26 20%, rgba(3, 15, 38, 0.4) 60%, transparent), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200'); /* خلفية تقنية مؤقتة مذهلة */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .video-play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background-color: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #030f26;
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(245, 185, 50, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .video-play-overlay:hover {
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+
+        .featured-badge-live {
+            position: absolute;
+            bottom: 140px;
+            right: 25px;
+            background-color: #ef4444;
+            color: var(--text-white);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .featured-badge-live::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .featured-news-title {
+            font-size: 1.9rem;
+            font-weight: 800;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            max-width: 90%;
+        }
+
+        .featured-news-meta {
+            display: flex;
+            gap: 20px;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .featured-news-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* عمود القائمة الجانبية (الأخبار المتتالية على اليسار بصرياً) */
+        .side-news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .side-news-card {
+            background: rgba(6, 26, 61, 0.3);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: border-color 0.2s;
+            cursor: pointer;
+        }
+
+        .side-news-card:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .side-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .side-card-time {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .side-card-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 6px;
+            background: rgba(245, 185, 50, 0.1);
+            color: var(--accent-gold);
+        }
+
+        .side-card-tag.blue-tag {
+            background: rgba(0, 102, 255, 0.1);
+            color: #3b82f6;
+        }
+
+        .side-card-tag.purple-tag {
+            background: rgba(168, 85, 247, 0.1);
+            color: #a855f7;
+        }
+
+        .side-news-heading {
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.5;
+            color: var(--text-white);
+        }
+
+        .side-news-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* شاشات الموبايل والتابلت */
+        @media (max-width: 1024px) {
+            .news-categories-tabs { grid-template-columns: repeat(3, 1fr); }
+            .news-articles-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 640px) {
+            .news-categories-tabs { grid-template-columns: repeat(2, 1fr); }
+            .news-section { padding: 0 20px; }
+            .featured-news-title { font-size: 1.4rem; }
+        }
+
+        /* 🏢 بوابة الخدمات الموحدة (Services Section) */
+        .services-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 50px;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .services-header {
+            margin-bottom: 50px;
+        }
+
+        .services-header p {
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .services-header h3 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--text-white);
+        }
+
+        .services-header span {
+            display: block;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+
+        /* شبكة الكروت المتطابقة (Grid Layout) */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        /* كارت الخدمة كرابط كامل يوجه إلى صفحة الخدمات */
+        .service-anchor-card {
+            text-decoration: none;
+            background: rgba(6, 26, 61, 0.4);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 30px 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* محاذاة العناصر يميناً */
+            text-align: right;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-anchor-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(6, 26, 61, 0.7);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(3, 15, 38, 0.5);
+        }
+
+        /* أيقونة الخدمة الذهبية المؤطرة */
+        .service-icon-box {
+            width: 46px;
+            height: 46px;
+            background: rgba(245, 185, 50, 0.08);
+            border: 1px solid rgba(245, 185, 50, 0.15);
+            color: var(--accent-gold);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .service-anchor-card:hover .service-icon-box {
+            background: var(--accent-gold);
+            color: #030f26;
+            box-shadow: 0 0 15px rgba(245, 185, 50, 0.3);
+        }
+
+        .service-card-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-white);
+            margin-bottom: 10px;
+        }
+
+        .service-card-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* زر استعراض جميع الخدمات السفلي */
+        .btn-all-services-footer {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: opacity 0.2s;
+            margin-top: 20px;
+        }
+
+        .btn-all-services-footer:hover {
+            opacity: 0.8;
+        }
+
+        /* التجاوب مع شاشات الأجهزة الذكية */
+        @media (max-width: 1200px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+            .services-grid { grid-template-columns: 1fr; }
+            .services-header h3 { font-size: 1.8rem; }
+            .services-section { padding: 0 20px; }
+        }
+        /* --- قسم الهيكل القيادي والوزاري --- */
+        .leadership-section {
+            padding: 60px 5%;
+            background: linear-gradient(180deg, transparent, var(--bg-grid));
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .leader-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .leader-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(245, 185, 50, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 102, 255, 0.15);
+        }
+
+        .leader-card:hover::before {
+            opacity: 1;
+        }
+
+        .leader-avatar-box {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.2), rgba(245, 185, 50, 0.1));
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .leader-card:hover .leader-avatar-box {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 20px rgba(245, 185, 50, 0.2);
+        }
+
+        .leader-avatar-box i {
+            font-size: 50px;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .leader-card:hover .leader-avatar-box i {
+            color: var(--accent-gold);
+        }
+
+        .leader-role {
+            font-size: 14px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .leader-name {
+            font-size: 20px;
+            color: var(--text-white);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .leader-contact-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .leader-contact-btn:hover {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: var(--text-white);
+        }
+        /* --- تنسيقات وضع المظهر الفاتح (Light Mode) --- */
+        body.light-mode {
+            --bg-color: #f4f6f9;
+            --bg-grid: #e9ecef;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(0, 0, 0, 0.08);
+            --text-white: #0f172a;
+            --text-muted: #475569;
+        }
+        body.light-mode .hero-section::before, 
+        body.light-mode .news-section {
+            background-image: radial-gradient(rgba(0, 102, 255, 0.05) 1px, transparent 0);
+        }
+        body.light-mode .nav-container, 
+        body.light-mode .leader-card,
+        body.light-mode .service-anchor-card {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        /* --- تنسيقات دعم اتجاه اللغة الإنجليزية (LTR) --- */
+        body.en-mode {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: left;
+        }
+        body.en-mode .nav-container,
+        body.en-mode .hero-content,
+        body.en-mode .section-header,
+        body.en-mode .service-card-desc,
+        body.en-mode .featured-news-meta,
+        body.en-mode .footer-bottom {
+            text-align: left;
+        }
+        body.en-mode .nav-links,
+        body.en-mode .featured-news-meta,
+        body.en-mode .footer-bottom {
+            flex-direction: row-reverse;
+        }
+        /* --- تأثيرات وضع المظهر الفاتح (Light Mode) --- */
+        body.light-mode {
+            --bg-color: #f3f4f6;
+            --bg-grid: #e5e7eb;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(0, 0, 0, 0.08);
+            --text-white: #0f172a;
+            --text-muted: #4b5563;
+        }
+        body.light-mode .hero-cards-visual div, 
+        body.light-mode .category-tab-card,
+        body.light-mode .side-news-card,
+        body.light-mode .horizontal-stat-card {
+            background: rgba(255, 255, 255, 0.9);
+            color: #0f172a !important;
+        }
+        body.light-mode .main-featured-news-card {
+            background-image: linear-gradient(to top, #f3f4f6 20%, rgba(243, 244, 246, 0.4) 60%, transparent), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200');
+        }
+
+        /* --- تنسيقات التبديل للغة الإنجليزية (LTR) --- */
+        body.en-mode {
+            text-align: left;
+        }
+        body.en-mode .navbar,
+        body.en-mode .hero-text-block,
+        body.en-mode .news-main-title,
+        body.en-mode .category-tab-card,
+        body.en-mode .live-title {
+            text-align: left;
+            align-items: flex-start;
+        }
+        body.en-mode .nav-container,
+        body.en-mode .news-section-header {
+            flex-direction: row-reverse;
+        }
+        body.en-mode .nav-menu {
+            flex-direction: row-reverse;
+        }
+        /* --- قسم مكافحة الشائعات والتحقق من الحقائق (Fact-Checking & Glassmorphism) --- */
+        :root {
+            --truth-green: #10b981;
+            --fake-red: #ef4444;
+        }
+
+        .fact-check-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 50px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .fact-check-container {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr; /* تم عكس النسب لتتناسب مع التموضع الجديد */
+            gap: 50px;
+            align-items: center;
+        }
+
+        /* كتلة المعلومات والعناوين */
+        .fact-info-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: right;
+        }
+
+        .badge-verification {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--truth-green);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .fact-main-heading {
+            font-size: 2.8rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .fact-sub-paragraph {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .fact-metrics-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .metric-glass-pill {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            padding: 10px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .metric-glass-pill .m-val {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+        }
+
+        .metric-glass-pill .m-lbl {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* كارت الغلاسمورفيزم التفاعلي المتقدم */
+        .fact-card-wrapper {
+            position: relative;
+        }
+
+        /* توهج ضوئي خلف الكارت لمظهر زجاجي ثلاثي الأبعاد */
+        .fact-card-wrapper::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.12) 0%, rgba(0,0,0,0) 70%);
+            top: -50px;
+            left: -50px; /* تحويل التوهج جهة اليسار */
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .glass-fact-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 30px;
+            backdrop-filter: blur(16px) saturate(120%);
+            -webkit-backdrop-filter: blur(16px) saturate(120%);
+            box-shadow: 0 20px 50px rgba(3, 15, 38, 0.4), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .fact-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .fact-status-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .fact-status-badge.status-fake {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--fake-red);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.1);
+        }
+
+        .fact-source {
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .fact-source .source-lbl { color: var(--text-muted); margin-left: 4px; }
+        .fact-source .source-val { color: var(--text-white); }
+
+        .fact-statement-box {
+            position: relative;
+            background: rgba(239, 68, 68, 0.03);
+            border-right: 4px solid var(--fake-red);
+            padding: 20px;
+            border-radius: 4px 12px 12px 4px;
+            margin-bottom: 25px;
+        }
+
+        .fact-statement-box .quote-icon {
+            position: absolute;
+            top: -12px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: rgba(239, 68, 68, 0.15);
+        }
+
+        .fact-statement-box .statement-text {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-white);
+            line-height: 1.6;
+        }
+
+        .fact-explanation {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            padding: 20px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+        }
+
+        .fact-explanation .exp-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+        }
+
+        .fact-explanation .exp-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        .fact-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--card-border);
+            padding-top: 20px;
+        }
+
+        .fact-card-footer .integrity-score {
+            font-size: 0.75rem;
+            color: var(--truth-green);
+            font-weight: 700;
+        }
+
+        .btn-report-rumor {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border);
+            color: var(--text-white);
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-report-rumor:hover {
+            background: var(--fake-red);
+            border-color: var(--fake-red);
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+        }
+
+        /* دمج دعم الوضع المضيء */
+        body.light-mode .glass-fact-card {
+            background: rgba(255, 255, 255, 0.75);
+            color: #0f172a;
+        }
+        body.light-mode .fact-statement-box {
+            background: rgba(239, 68, 68, 0.05);
+        }
+        body.light-mode .fact-explanation {
+            background: #ffffff;
+        }
+
+        /* دعم الوضع الأجنبي المتناسق للقلب */
+        body.en-mode .fact-check-container {
+            grid-template-columns: 1.1fr 0.9fr; /* تعديل مرن للترتيب عند قلب اللغات */
+        }
+        body.en-mode .fact-info-block {
+            align-items: flex-start;
+            text-align: left;
+        }
+        body.en-mode .fact-statement-box {
+            border-right: none;
+            border-left: 4px solid var(--fake-red);
+            border-radius: 12px 4px 4px 12px;
+        }
+        body.en-mode .fact-explanation .exp-desc {
+            text-align: left;
+        }
+
+        /* التجاوب مع شاشات الجوال */
+        @media (max-width: 1024px) {
+            .fact-check-container { grid-template-columns: 1fr !important; gap: 40px; }
+        }
+        @media (max-width: 640px) {
+            .fact-check-section { padding: 0 20px; }
+            .fact-main-heading { font-size: 2rem; }
+            .fact-card-footer { flex-direction: column; gap: 15px; align-items: flex-start; }
+            .btn-report-rumor { width: 100%; justify-content: center; }
+        }
+        .release-announcement {
+    max-width: 1400px;
+    margin: 80px auto;
+    padding: 0 50px;
+}
+
+.glass-announcement-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 40px;
+    align-items: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.announcement-badge {
+    color: var(--accent-gold);
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.glass-announcement-card h3 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.glass-announcement-card p {
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.btn-read-more {
+    color: var(--text-white);
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.pdf-preview-box {
+    width: 100%;
+    height: 350px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    overflow: hidden; /* Ensures the image doesn't bleed out of the rounded corners */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pdf-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    transition: transform 0.5s ease;
+}
+
+/* Add a nice zoom effect on hover */
+.pdf-preview-box:hover .pdf-image {
+    transform: scale(1.05);
+}
+
+/* التجاوب */
+@media (max-width: 768px) {
+    .glass-announcement-card { grid-template-columns: 1fr; }
+    .pdf-preview-box { height: 200px; }
+}
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+
+    <header class="navbar">
+        <div class="nav-container">
+            
+            <div class="nav-right-side">
+                <div class="nav-icons-group">
+                    <i class="fa-regular fa-sun" title="الوضع المضيء"></i>
+                    <span>EN</span>
+                    <i class="fa-regular fa-bell" title="الإشعارات"></i>
+                    <i class="fa-solid fa-magnifying-glass" title="البحث الذكي"></i>
+                </div>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="#" class="active">الرئيسية</a></li>
+                <li><a href="#">الأخبار</a></li>
+                <li><a href="#">الإدارات</a></li>
+                <li><a href="/services.html">الخدمات</a></li>
+                <li><a href="/services.html">تتبع طلب</a></li>
+            </ul>
+
+            <div class="nav-left-brand">
+                <div class="brand-titles">
+                    <h1>وزارة الإعلام</h1>
+                    <p>دولة توبيا — Topia</p>
+                </div>
+                <div class="logo-cube">
+                    <i class="fa-solid fa-cubes"></i>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+   <section class="hero">
+        
+        <div class="hero-cards-visual">
+            
+            <div class="card-live-stream">
+                <div class="live-header">
+                    <span class="live-indicator">بث مباشر</span>
+                    <span class="live-channel-name">القناة الأولى</span>
+                </div>
+                <div class="video-placeholder">
+                    <i class="fa-solid fa-tower-broadcast"></i>
+                </div>
+                <div class="live-title">كلمة معالي الوزير في الجلسة المفتوحة اليوم</div>
+            </div>
+
+            <div class="card-ai-assistant">
+                <div class="ai-header">
+                    <div class="ai-status">متصل الآن</div>
+                    <div class="ai-title">
+                        <span>المساعد الحكومي AI</span>
+                        <div class="ai-icon-badge"><i class="fa-solid fa-bolt"></i></div>
+                    </div>
+                </div>
+                <div class="ai-body">
+                    جاهز لخدمتك على مدار الساعة بالإجابة على الاستفسارات وتوليد البيانات الصحفية بدقة.
+                </div>
+            </div>
+
+            <div class="card-analytics-graph">
+                <div class="graph-header">
+                    <span class="graph-percentage"><i class="fa-solid fa-caret-up"></i> %٣.٢+</span>
+                    <div class="graph-value-block">
+                        <div class="graph-title">المؤشر الإعلامي الوطني</div>
+                        <div class="graph-main-value">٩٤.٧</div>
+                    </div>
+                </div>
+                <div class="graph-bars">
+                    <div class="bar bar-1"></div>
+                    <div class="bar bar-2"></div>
+                    <div class="bar bar-3"></div>
+                    <div class="bar bar-4"></div>
+                    <div class="bar bar-5"></div>
+                    <div class="bar bar-6"></div>
+                    <div class="bar bar-7"></div>
+                    <div class="bar bar-8"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="hero-text-block">
+            <div class="badge-official">
+                <span>المنصة الرسمية المعتمدة – دولة توبيا</span>
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            
+            <h2 class="main-headline">
+                صوت الوطن.<br>
+                <span class="gold-text">نبض المعلومة.</span>
+            </h2>
+            
+            <p class="sub-paragraph">
+                وزارة الإعلام التوبية – البوابة الرقمية الموحدة للأخبار الرسمية، البيانات الحكومية، والخدمات الإعلامية بأعلى معايير الشفافية والأمان السيبراني القومي.
+            </p>
+
+            <div class="action-group-container">
+                <div class="primary-actions-row">
+                    <a href="#" class="btn-glass-action">
+                        <i class="fa-regular fa-newspaper"></i>
+                        <span>آخر الأخبار</span>
+                    </a>
+                    <a href="/services.html" class="btn-glass-action">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span>تتبع طلبك</span>
+                    </a>
+                    <a href="/services.html" class="btn-services-hub">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>بوابة الخدمات</span>
+                        <i class="fa-solid fa-border-all"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="release-announcement">
+    <div class="glass-announcement-card">
+        <div class="announcement-content">
+            <span class="announcement-badge">
+                <i class="fa-solid fa-bullhorn"></i> إعلان رسمي
+            </span>
+            <h3>تم إطلاق موقع وزارة الإعلام</h3>
+            <p>يسرنا الإعلان عن الانطلاقة الرسمية للمنصة الرقمية الجديدة لدولة توبيا، والتي تهدف لتقديم خدمات إعلامية متطورة بشفافية وابتكار.</p>
+            <a href="Your paragraph text (8).png" class="btn-read-more">تصفح الملف الرسمي <i class="fa-solid fa-arrow-left"></i></a>
+        </div>
+        <div class="announcement-visual">
+            <div class="pdf-preview-box">
+                <img src="Your paragraph text (8).png" alt="إعلان انطلاق الموقع" class="pdf-image">
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="footer-stats-strip">
+        <div class="horizontal-stat-card">
+            <div class="h-stat-number">٩٩%</div>
+            <div class="h-stat-label">موثوقية البيانات ورصد الأخبار المغلوطة</div>
+        </div>
+        <div class="horizontal-stat-card">
+            <div class="h-stat-number">٢٤/٧</div>
+            <div class="h-stat-label">بث رقمي وتغطية حية مستمرة</div>
+        </div>
+        <div class="horizontal-stat-card">
+            <div class="h-stat-number">250k+</div>
+            <div class="h-stat-label">وصول إعلامي وتأثير رقمي عالمي</div>
+        </div>
+        <div class="horizontal-stat-card">
+            <div class="h-stat-number">50+</div>
+            <div class="h-stat-label">بيان رسمي وتصريح سيادي موثق</div>
+        </div>
+    </section>
+
+    <div class="news-ticker-container">
+        <div class="ticker-wrapper">
+            
+            <div class="ticker-title">
+                <i class="fa-solid fa-bullhorn animate-pulse"></i>
+                <span>عاجل</span>
+            </div>
+
+            <div class="ticker-content-flow">
+                <div class="ticker-text-inner">
+                    
+                    <div class="ticker-item">
+                        <span class="ticker-bullet"></span>
+                        <p>وزارة الإعلام تطلق المنصة الرقمية الموحدة لخدمات التراخيص الإعلامية الفيدرالية.</p>
+                    </div>
+
+                    <div class="ticker-item">
+                        <span class="ticker-bullet"></span>
+                        <p>اعتماد الهوية البصرية الرسمية الجديدة للمكاتب والقطاعات الإعلامية في دولة توبيا.</p>
+                    </div>
+
+                    <div class="ticker-item">
+                        <span class="ticker-bullet"></span>
+                        <p>وزارة الإعلام التوبية تهنئ أبناء دولة توبيا بحلول عيد الأضحى المبارك</p>
+                    </div>
+
+                    <div class="ticker-item">
+                        <span class="ticker-bullet"></span>
+                        <p>تعلن وزارة الإعلام التوبية عن خطة شاملة لتحسين المحتوى الإعلامي الخاص بالدولة</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <section class="news-section">
+        
+        <div class="news-section-header">
+    <div class="news-main-title">
+        <p>مركز الأخبار والإعلام</p>
+        <h3>آخر المستجدات الرسمية</h3>
+    </div>
+    
+    <a href="#" class="btn-view-all-news">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>عرض كل الأخبار</span>
+    </a>
+</div>
+
+        <div class="news-categories-tabs">
+            <div class="category-tab-card">
+                <i class="fa-solid fa-bullhorn"></i>
+                <span class="cat-name">إعلانات وطنية</span>
+            </div>
+            <div class="category-tab-card">
+                <i class="fa-solid fa-microchip"></i>
+                <span class="cat-name">التحول الرقمي</span>
+            </div>
+            <div class="category-tab-card">
+                <i class="fa-solid fa-file-invoice"></i>
+                <span class="cat-name">بيانات صحفية</span>
+            </div>
+            <div class="category-tab-card">
+                <i class="fa-solid fa-earth-americas"></i>
+                <span class="cat-name">علاقات دولية</span>
+            </div>
+            <div class="category-tab-card active">
+                <i class="fa-solid fa-gavel"></i>
+                <span class="cat-name">أخبار حكومية</span>
+            </div>
+        </div>
+
+        <div class="news-articles-grid">
+            
+            <div class="side-news-list">
+                
+                <div class="side-news-card">
+                    <div class="side-card-top">
+                        <span class="side-card-time">اليوم – 12:00</span>
+                        <span class="side-card-tag">بيان رسمي</span>
+                    </div>
+                    <h4 class="side-news-heading">وزارة الإعلام تطلق المنصة الوطنية للإعلام الرقمي </h4>
+                    <p class="side-news-desc">خارطة طريق شاملة لتعزيز السيادة الإعلامية ودعم المحتوى الوطني عبر منصات ذكية متطورة.</p>
+                </div>
+
+                <div class="side-news-card">
+                    <div class="side-card-top">
+                        <span class="side-card-time">27/5/2026</span>
+                        <span class="side-card-tag blue-tag">علاقات داخلية</span>
+                    </div>
+                    <h4 class="side-news-heading">وزارة الاعلام التوبية ومنظمة XL تهنئ أبناء توبيا بحلول عيد الأضحى</h4>
+                    <p class="side-news-desc">تم نشر العديد من الكتب عبر روم وزارة الإعلام تضمنت توجيه التحية لأبناء الدولة التوبية بحلول عيد الأضحى</p>
+                </div>
+
+                <div class="side-news-card">
+                    <div class="side-card-top">
+                        <span class="side-card-time">26/5/2026</span>
+                        <span class="side-card-tag purple-tag">علاقات دولية</span>
+                    </div>
+                    <h4 class="side-news-heading">الإعلان عن شعار المجلس الإعلامي الدولي</h4>
+                    <p class="side-news-desc">معالي الوزير أ. راكان يعلن عن الشعار الجديد لمجلس الإعلام الدولي IMC1<p>
+                </div>
+
+            </div>
+
+            
+            <a href="https://www.tiktok.com/@xl_news1" target="_blank" class="main-featured-news-card" style="text-decoration: none; display: block;">
+                <div class="video-play-overlay">
+                    <i class="fa-solid fa-play"></i>
+                </div>
+            
+                <h3 class="featured-news-title">المحتوى الخاص بمنظمة XL</h3>
+                <div class="featured-news-meta">
+            
+                </div>
+            </a>
+
+        </div>
+
+    </section>
+
+    <section class="services-section">
+        
+        <div class="services-header">
+            <p>الخدمات الرقمية</p>
+            <h3>بوابة الخدمات الموحدة</h3>
+            <span>منصة آمنة لتقديم جميع الطلبات والخدمات الإعلامية إلكترونياً.</span>
+        </div>
+
+        <div class="services-grid">
+            
+            <a href="services.html" class="service-anchor-card">
+                <div class="service-icon-box">
+                    <i class="fa-solid fa-address-card"></i>
+                </div>
+                <h4 class="service-card-title">اعتماد صحفي</h4>
+                <p class="service-card-desc">إصدار أو تجديد بطاقة الاعتماد الصحفي الرسمية للصحفيين العاملين داخل أراضي توبيا.</p>
+            </a>
+
+            <a href="services.html" class="service-anchor-card">
+                <div class="service-icon-box">
+                    <i class="fa-solid fa-tower-cell"></i>
+                </div>
+                <h4 class="service-card-title">ترخيص بث إذاعي/تلفزيوني</h4>
+                <p class="service-card-desc">منح تراخيص لتأسيس وتشغيل محطة بث إذاعي أو تلفزيوني داخل دولة توبيا بعد دراسة واستيفاء الشروط.</p>
+            </a>
+
+            <a href="services.html" class="service-anchor-card">
+                <div class="service-icon-box">
+                    <i class="fa-solid fa-print"></i>
+                </div>
+                <h4 class="service-card-title">ترخيص إصدار مطبوعة</h4>
+                <p class="service-card-desc">منح تراخيص رسمي لإصدار صحيفة أو مجلة دورية، شاملاً مراجعة الهيكل التحريري والسياسات.</p>
+            </a>
+
+            <a href="services.html" class="service-anchor-card">
+                <div class="service-icon-box">
+                    <i class="fa-solid fa-photo-film"></i>
+                </div>
+                <h4 class="service-card-title">تصريح تغطية إعلامية</h4>
+                <p class="service-card-desc">تصريح رسمي لتغطية فعالية أو حدث ضمن نطاق توبيا، يشمل تحديد الفريق والمعدات المستخدمة.</p>
+            </a>
+
+            <a href="services.html" class="service-anchor-card">
+                <div class="service-icon-box">
+                    <i class="fa-solid fa-passport"></i>
+                </div>
+                <h4 class="service-card-title">اعتماد مراسل أجنبي</h4>
+                <p class="service-card-desc">منح اعتماد رسمي للمراسلين الأجانب العاملين لدى وسائل إعلام دولية داخل توبيا بالتنسيق الخارجي.</p>
+            </a>
+
+            <a href="services.html" class="service-anchor-card">
+                <div class="service-icon-box">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <h4 class="service-card-title">شكوى محتوى إعلامي</h4>
+                <p class="service-card-desc">تقديم شكوى رسمية بشأن محتوى إعلامي مخالف للقوانين أو الأخلاقيات المهنية المرعية في البلاد.</p>
+            </a>
+
+            <a href="services.html" class="service-anchor-card">
+                <div class="service-icon-box">
+                    <i class="fa-solid fa-folder-open"></i>
+                </div>
+                <h4 class="service-card-title">طلب وثائق ومعلومات</h4>
+                <p class="service-card-desc">طلب الوصول إلى وثائق ومعلومات حكومية وفقاً لقانون حق الوصول إلى المعلومات في المنظومة الرقمية.</p>
+            </a>
+
+            <a href="services.html" class="service-anchor-card">
+                <div class="service-icon-box">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h4 class="service-card-title">برامج تدريب إعلامي</h4>
+                <p class="service-card-desc">التسجيل في برامج التدريب الإعلامي التخصصية التي تنظمها الوزارة بالتعاون مع المعاهد العالمية.</p>
+            </a>
+
+        </div>
+
+        <a href="services.html" class="btn-all-services-footer">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>عرض جميع الخدمات</span>
+        </a>
+
+    </section>
+
+    <section class="leadership-section">
+        <div class="section-header" style="text-align: center; margin-bottom: 20px;">
+            <span class="section-tag" style="color: var(--accent-gold); font-size: 14px; font-weight: bold; letter-spacing: 1px;">القيادة العليا</span>
+            <h2 class="section-main-title" style="color: var(--text-white); font-size: 32px; font-weight: 800; margin-top: 5px;">مسؤولو وزارة الإعلام</h2>
+        </div>
+
+        <div class="leadership-grid">
+            
+            <div class="leader-card">
+                <div class="leader-avatar-box">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <span class="leader-role">وزير الإعلام</span>
+                <h3 class="leader-name">معالي الوزير أ. راكان</h3>
+                <a href="#" class="leader-contact-btn">
+                    <i class="fa-regular fa-envelope"></i> مكتب الوزير
+                </a>
+            </div>
+
+            <div class="leader-card">
+                <div class="leader-avatar-box">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <span class="leader-role">نائب الوزير</span>
+                <h3 class="leader-name">السيد اياد</h3>
+                <a href="#" class="leader-contact-btn">
+                    <i class="fa-regular fa-envelope"></i> الاتصال بالنائب
+                </a>
+            </div>
+
+            <div class="leader-card">
+                <div class="leader-avatar-box">
+                    <i class="fa-solid fa-user-gear"></i>
+                </div>
+                <span class="leader-role">مساعد الوزير</span>
+                <h3 class="leader-name">السيد عمر بن راكان</h3>
+                <a href="#" class="leader-contact-btn">
+                    <i class="fa-regular fa-envelope"></i> الشؤون التنفيذية
+                </a>
+            </div>
+
+            <div class="leader-card">
+                <div class="leader-avatar-box">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </div>
+                <span class="leader-role">مستشار الوزير</span>
+                <h3 class="leader-name">سعادة المستشار أبو مازن</h3>
+                <a href="#" class="leader-contact-btn">
+                    <i class="fa-regular fa-envelope"></i> المكتب الاستشاري
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="fact-check-section">
+        <div class="fact-check-container">
+            
+            <div class="fact-info-block">
+                <div class="badge-verification">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>منصة "يقين" الفيدرالية لصحافة كشف التضليل</span>
+                </div>
+                <h3 class="fact-main-heading">حرب الشائعات <br><span class="gold-text">تنتهي هنا.</span></h3>
+                <p class="fact-sub-paragraph">
+                    في أوقات الأزمات والحروب، تصبح المعلومة الدقيقة خط الدفاع الأول. تعمل وزارة الإعلام عبر خوارزميات الذكاء الاصطناعي على رصد الأخبار المفبركة وتصحيحها فوراً لحماية السلم الأهلي والاستقرار السيبراني التوبي.
+                </p>
+                <div class="fact-metrics-row">
+                    <div class="metric-glass-pill">
+                        <span class="m-val">٠٪</span>
+                        <span class="m-lbl">التسامح مع التضليل</span>
+                    </div>
+                    <div class="metric-glass-pill">
+                        <span class="m-val">١٠ د</span>
+                        <span class="m-lbl">متوسط سرعة النفي الرقمي</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fact-card-wrapper">
+                <div class="glass-fact-card">
+                    <div class="fact-card-header">
+                        <span class="fact-status-badge status-fake">
+                            <i class="fa-solid fa-circle-xmark"></i> <span class="status-text">شائعة مزيفة</span>
+                        </span>
+                        <div class="fact-source">
+                            <span class="source-lbl">المصدر:</span>
+                            <span class="source-val">المرصد الوطني الرقمي</span>
+                        </div>
+                    </div>
+                    
+                    <div class="fact-statement-box">
+                        <i class="fa-solid fa-quote-right quote-icon"></i>
+                        <h4 class="statement-text">"أنباء عن اعتزال رئيس الجمهورية السياسة وتنحيه عن منصبه بسبب ظروف الحرب الحالية."</h4>
+                    </div>
+
+                    <div class="fact-explanation">
+                        <div class="exp-title">
+                            <i class="fa-solid fa-shield-heart"></i>
+                            <span>التوضيح الرسمي للمديرية:</span>
+                        </div>
+                        <p class="exp-desc">ينفي مكتب رئاسة الجمهورية جملة وتفصيلاً هذه الادعاءات المتداولة على منصات التواصل الاجتماعي. نؤكد أن السيد الرئيس يمارس مهامه الدستورية والسيادية بشكل اعتيادي ويقود غرف العمليات لإدارة الأزمة الحالية. نرجو استقاء الأخبار من المنصات الموثوقة للدولة.</p>
+                    </div>
+
+                    <div class="fact-card-footer">
+                        <span class="integrity-score"><i class="fa-solid fa-percent"></i> موثوقية الرصد: ١٠٠٪</span>
+                        <button class="btn-report-rumor">
+                            <span>إبلاغ عن شائعة</span>
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+ <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // ==========================================
+            // 1. نظام تحويل المظهر (Dark / Light Mode)
+            // ==========================================
+            const moonIcon = document.querySelector(".nav-icons-group i.fa-moon") || document.querySelector(".nav-icons-group i.fa-sun");
+            
+            // التحقق من حالة المظهر المحفوظة سابقاً
+            if (localStorage.getItem("theme") === "light") {
+                document.body.classList.add("light-mode");
+                if (moonIcon) moonIcon.className = "fa-solid fa-sun";
+            }
+
+            if (moonIcon) {
+                moonIcon.addEventListener("click", function () {
+                    document.body.classList.toggle("light-mode");
+                    const isLight = document.body.classList.contains("light-mode");
+                    localStorage.setItem("theme", isLight ? "light" : "dark");
+                    moonIcon.className = isLight ? "fa-solid fa-sun" : "fa-solid fa-moon";
+                });
+            }
+
+            // ==========================================
+            // 2. نظام تحويل اللغة والترجمة (AR / EN)
+            // ==========================================
+            const langBtn = document.querySelector(".nav-icons-group span");
+            
+            // قاموس النصوص والمصطلحات المعتمدة للموقع بدولة توبيا
+            const dictionary = {
+                ar: {
+                    title: "وزارة الإعلام - دولة توبيا",
+                    navHome: "الرئيسية", navServices: "الخدمات الإلكترونية", navNews: "المركز الإعلامي", navLeadership: "مسؤولو الوزارة",
+                    heroTag: "البوابة الرقمية الرسمية الموحدة", heroTitle: "وزارة الإعلام الفيدرالية", heroDesc: "المنصة الرسمية المخصصة لتنظيم شؤون البث والنشر المطبوع والرقمي، وتقديم خدمات الاعتماد والتراخيص الرسمية للمؤسسات والصحفيين في البلاد.",
+                    btnServices: "استكشاف الخدمات الموحدة", btnTrack: "نظام التتبع المركزي",
+                    secNewsTag: "آخر المستجدات", secNewsTitle: "آخر المستجدات والإعلانات الرسمية",
+                    liveBadge: "بث مباشر", liveTitle: "المؤتمر الوطني للإعلام الرقمي – الجلسة الافتتاحية",
+                    langText: "EN"
+                },
+                en: {
+                    title: "Ministry of Information - Tobia State",
+                    navHome: "Home", navServices: "E-Services", navNews: "Media Center", navLeadership: "Officials",
+                    heroTag: "Official Unified Digital Portal", heroTitle: "Federal Ministry of Information", heroDesc: "The official platform dedicated to regulating broadcasting, print, and digital media affairs, and providing official accreditation and licensing services for institutions and journalists in the country.",
+                    btnServices: "Explore Services Hub", btnTrack: "Central Tracking System",
+                    secNewsTag: "LATEST UPDATES", secNewsTitle: "Latest Updates & Official Announcements",
+                    liveBadge: "LIVE", liveTitle: "National Digital Media Conference – Opening Session",
+                    langText: "AR"
+                }
+            };
+
+            function applyLanguage(lang) {
+                if (lang === "en") {
+                    document.body.classList.add("en-mode");
+                    document.documentElement.setAttribute("dir", "ltr");
+                    document.documentElement.setAttribute("lang", "en");
+                } else {
+                    document.body.classList.remove("en-mode");
+                    document.documentElement.setAttribute("dir", "rtl");
+                    document.documentElement.setAttribute("lang", "ar");
+                }
+
+                // تحديث عنوان التبويب بالمتصفح
+                document.title = dictionary[lang].title;
+                if (langBtn) langBtn.innerText = dictionary[lang].langText;
+
+                // تحديث عناصر القائمة العلوية روابط الـ Navbar
+                const menuLinks = document.querySelectorAll(".nav-menu a");
+                if (menuLinks.length >= 4) {
+                    menuLinks[0].innerText = dictionary[lang].navHome;
+                    menuLinks[1].innerText = dictionary[lang].navServices;
+                    menuLinks[2].innerText = dictionary[lang].navNews;
+                    menuLinks[3].innerText = dictionary[lang].navLeadership;
+                }
+
+                // تحديث نصوص واجهة الهيرو
+                if (document.querySelector(".badge-official span")) document.querySelector(".badge-official span").innerText = dictionary[lang].heroTag;
+                if (document.querySelector(".main-headline")) {
+                    if (lang === "en") {
+                        document.querySelector(".main-headline").innerHTML = `Federal Ministry of <span class="gold-text">Information</span>`;
+                    } else {
+                        document.querySelector(".main-headline").innerHTML = `وزارة الإعلام <span class="gold-text">الفيدرالية</span>`;
+                    }
+                }
+                if (document.querySelector(".sub-paragraph")) document.querySelector(".sub-paragraph").innerText = dictionary[lang].heroDesc;
+                if (document.querySelector(".btn-services-hub")) document.querySelector(".btn-services-hub").childNodes[0].textContent = dictionary[lang].btnServices + " ";
+                if (document.querySelector(".btn-glass-action")) document.querySelector(".btn-glass-action").childNodes[0].textContent = dictionary[lang].btnTrack + " ";
+
+                // تحديث عناوين قسم الأخبار والمستجدات
+                if (document.querySelector(".news-main-title p")) document.querySelector(".news-main-title p").innerText = dictionary[lang].secNewsTag;
+                if (document.querySelector(".news-main-title h3")) document.querySelector(".news-main-title h3").innerText = dictionary[lang].secNewsTitle;
+                if (document.querySelector(".featured-badge-live")) document.querySelector(".featured-badge-live").innerText = dictionary[lang].liveBadge;
+                if (document.querySelector(".featured-news-title")) document.querySelector(".featured-news-title").innerText = dictionary[lang].liveTitle;
+            }
+
+            if (langBtn) {
+                langBtn.addEventListener("click", function () {
+                    const currentLang = document.documentElement.getAttribute("lang") === "en" ? "ar" : "en";
+                    localStorage.setItem("lang", currentLang);
+                    applyLanguage(currentLang);
+                });
+            }
+
+            // تفعيل اللغة المحفوظة المفضلة مسبقاً عند التشغيل الأول
+            const savedLang = localStorage.getItem("lang") || "ar";
+            if (savedLang !== "ar") {
+                applyLanguage(savedLang);
+            }
+        });
+    </script>
+
+</body>
+</html>
